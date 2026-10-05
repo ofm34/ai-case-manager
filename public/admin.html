@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — AI Case Manager</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 480px; margin: 3rem auto; padding: 0 1rem; }
+    nav a { margin-right: 1rem; }
+    label { display: block; margin-top: .6rem; font-weight: 600; }
+    input { width: 100%; padding: .4rem; margin-top: .2rem; box-sizing: border-box; }
+    button { margin-top: 1rem; padding: .5rem 1rem; cursor: pointer; }
+    #status { margin-left: .5rem; color: #a00; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/patient.html">Patient Profile</a>
+    <a href="/upload.html">Upload Document</a>
+    <a href="/admin.html">Admin Login</a>
+  </nav>
+
+  <h1>Admin Login</h1>
+  <p><em>Demo only: placeholder password check. Replace with real auth (e.g. Cloudflare Access) before production.</em></p>
+  <form id="login-form">
+    <label>Username <input name="username" value="admin" /></label>
+    <label>Password <input name="password" type="password" /></label>
+    <button type="submit">Log in</button>
+    <span id="status"></span>
+  </form>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const body = Object.fromEntries(new FormData(e.target));
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      const status = document.getElementById('status');
+      if (res.ok) {
+        status.style.color = '#0a7d32';
+        status.textContent = 'Logged in (demo session).';
+      } else {
+        status.style.color = '#a00';
+        status.textContent = 'Login failed.';
+      }
+    });
+  </script>
+</body>
+</html>

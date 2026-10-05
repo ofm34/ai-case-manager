@@ -1,0 +1,7 @@
+{
+  "name": "Demo Patient",
+  "dob": "1980-01-01",
+  "phone": "555-0100",
+  "insurance_carrier": "Demo Health",
+  "policy_number": "DEMO-000000"
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Document — AI Case Manager</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
+    nav a { margin-right: 1rem; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/patient.html">Patient Profile</a>
+    <a href="/upload.html">Upload Document</a>
+    <a href="/admin.html">Admin Login</a>
+  </nav>
+
+  <h1>Upload Document (stub)</h1>
+
+  <div class="card">
+    <!--
+      TODO: Production will store uploads in Cloudflare R2 with encryption
+      (R2 objects are encrypted at rest by default; add customer-managed keys
+      and per-object access controls before any real PHI is uploaded).
+      This stub accepts a file client-side and does NOT persist it anywhere.
+    -->
+    <p><strong>TODO:</strong> production will use Cloudflare R2 with encryption.
+       This stub does not persist the file anywhere.</p>
+    <input type="file" id="file" />
+    <button id="go">"Upload" (stub)</button>
+    <p id="out"></p>
+  </div>
+
+  <script>
+    document.getElementById('go').addEventListener('click', () => {
+      const f = document.getElementById('file').files[0];
+      document.getElementById('out').textContent = f
+        ? 'Stub: would upload "' + f.name + '" (' + f.size + ' bytes) to R2. Nothing was stored.'
+        : 'Choose a file first.';
+    });
+  </script>
+</body>
+</html>

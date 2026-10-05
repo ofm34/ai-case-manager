@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Patient Profile — AI Case Manager</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; }
+    nav a { margin-right: 1rem; }
+    label { display: block; margin-top: .6rem; font-weight: 600; font-size: .9rem; }
+    input { width: 100%; padding: .4rem; margin-top: .2rem; box-sizing: border-box; }
+    button { margin-top: 1rem; padding: .5rem 1rem; cursor: pointer; }
+    #status { margin-left: .5rem; color: #0a7d32; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/patient.html">Patient Profile</a>
+    <a href="/upload.html">Upload Document</a>
+    <a href="/admin.html">Admin Login</a>
+  </nav>
+
+  <h1>Patient Profile</h1>
+  <form id="profile-form">
+    <label>Name <input name="name" required /></label>
+    <label>Date of Birth <input name="dob" type="date" /></label>
+    <label>Phone <input name="phone" type="tel" /></label>
+    <label>Insurance Carrier <input name="insurance_carrier" /></label>
+    <label>Policy Number <input name="policy_number" /></label>
+    <button type="submit">Save</button>
+    <span id="status"></span>
+  </form>
+
+  <h2>Saved profile</h2>
+  <pre id="saved">(none yet)</pre>
+
+  <script>
+    const form = document.getElementById('profile-form');
+    const status = document.getElementById('status');
+    const saved = document.getElementById('saved');
+
+    async function load() {
+      const res = await fetch('/api/patient');
+      const data = await res.json();
+      if (data && data.name) {
+        for (const [k, v] of Object.entries(data)) {
+          if (form.elements[k]) form.elements[k].value = v;
+        }
+        saved.textContent = JSON.stringify(data, null, 2);
+      }
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const body = Object.fromEntries(new FormData(form));
+      const res = await fetch('/api/patient', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      status.textContent = res.ok ? 'Saved.' : 'Save failed (' + res.status + ').';
+      if (res.ok) load();
+    });
+
+    load();
+  </script>
+</body>
+</html>

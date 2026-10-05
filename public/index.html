@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Case Manager — Prototype</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 720px; margin: 2rem auto; padding: 0 1rem; color: #222; }
+    nav a { margin-right: 1rem; }
+    h1 { font-size: 1.4rem; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+    label { display: block; margin-top: .5rem; font-weight: 600; font-size: .9rem; }
+    input { width: 100%; padding: .4rem; margin-top: .2rem; box-sizing: border-box; }
+    button { margin-top: 1rem; padding: .5rem 1rem; cursor: pointer; }
+    #status { color: #0a7d32; }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/patient.html">Patient Profile</a>
+    <a href="/upload.html">Upload Document</a>
+    <a href="/admin.html">Admin Login</a>
+  </nav>
+
+  <h1>AI Case Manager — Prototype</h1>
+  <p>This is a minimal skeleton demonstrating the planned structure:
+     a static frontend on Cloudflare Pages, Pages Functions for the API,
+     and (later) D1 for storage and R2 for encrypted document storage.</p>
+
+  <div class="card">
+    <strong>Demo notice:</strong> placeholder data only. No real PHI is stored or transmitted.
+  </div>
+</body>
+</html>

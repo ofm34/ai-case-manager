@@ -1,0 +1,10 @@
+{
+  "name": "ai-case-manager-prototype",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Minimal prototype of an AI Case Manager platform (Cloudflare Pages + Functions).",
+  "scripts": {
+    "dev": "npx wrangler pages dev public --port 8788",
+    "deploy": "npx wrangler pages deploy public"
+  }
+}

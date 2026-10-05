@@ -9,7 +9,7 @@ pages_build_output_dir = "public"
 #   npx wrangler d1 create ai-case-manager-db
 # The API functions use a JSON-file stand-in when this binding is absent,
 # so the prototype runs even without D1.
-[[d1_databases]]
-binding = "DB"
-database_name = "ai-case-manager-db"
-database_id = "TODO_FILL_IN_AFTER_D1_CREATE"
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "ai-case-manager-db"
+# database_id = "FILL_IN_AFTER_npx_wrangler_d1_create"
